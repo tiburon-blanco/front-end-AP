@@ -10,10 +10,23 @@ export class PortfolioService {
   constructor(private http: HttpClient) { }
 
   obtenerDatos(): Observable<any> {
-    return this.http.get('https://nameless-leaf-2280.fly.dev/educacion');
+    return this.http.get('https://nameless-leaf-2280.fly.dev/experiencia');
   }
 
-
 }
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class PortfolioService {
+//   constructor() { }
+
+//   obtenerDatos() {
+//     console.log('El servicio esta corriendo');
+//   }
+// }
+
+
+
 
 
