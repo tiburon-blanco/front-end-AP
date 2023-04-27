@@ -5,12 +5,78 @@
 
         <ul *ngFor="let experiencia of experiencias">
             <li>
+                <img src={{experiencia.logo}} alt="logo" width="250px">
                 <h1>{{experiencia.empresa}}</h1> - <h3>({{experiencia.desde}}-{{experiencia.hasta}})</h3>
+                <button (click)="openModalExperienciaEdit(experiencia)">Editar</button>
+                <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
             </li>
             <p>{{experiencia.descripcion}}</p>
         </ul>
 
-
+        <button (click)="openModalExperiencia()">Agregar</button>
     </div>
 
+</div>
+
+
+<!--form modal-->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva experiencia</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formulario">
+             <input type="hidden" class="form-control" name="id" id="id">
+             <div class="form-group">
+                <label for="nombre">Logo <label style="color:red">(*)</label></label>
+                <input type="text" class="form-control" formControlName="logo" value="" required>
+              </div>
+              <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" class="form-control" formControlName="empresa" value="" required>
+              </div>
+             
+              <div class="form-group">
+                <label for="puesto">Puesto</label>
+                <input type="text" class="form-control" formControlName="puesto" value="" required>
+              </div>
+
+              <div class="form-group">
+                <label for="desde">Desde</label>
+                <input type="date" class="form-control" formControlName="desde" value="" required>
+              </div>
+
+              
+              <div class="form-group">
+                <label for="desde">Hasta</label>
+                <input type="date" class="form-control" formControlName="hasta" value="" required>
+              </div>
+
+              <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" formControlName="descripcion" value="" required rows="3"></textarea>
+              </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="addExperiencia()">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="updateExperiencia()">Actualizar</button>
+      </div>
+    </div>
+  </div>
 </div>
