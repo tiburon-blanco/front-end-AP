@@ -40,7 +40,7 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="formulario">
-             <input type="hidden" class="form-control" name="id" id="id">
+             <input type="hidden" class="form-control" formControlName="id" name="id" id="id">
              <div class="form-group">
                 <label for="nombre">Logo <label style="color:red">(*)</label></label>
                 <input type="text" class="form-control" formControlName="logo" value="" required>
