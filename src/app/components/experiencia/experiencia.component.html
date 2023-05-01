@@ -22,7 +22,7 @@
 <!--form modal-->
 <div
   class="modal fade"
-  id="myModal"
+  id="modal_experiencia"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -60,7 +60,6 @@
                 <input type="date" class="form-control" formControlName="desde" value="" required>
               </div>
 
-              
               <div class="form-group">
                 <label for="desde">Hasta</label>
                 <input type="date" class="form-control" formControlName="hasta" value="" required>
@@ -74,8 +73,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="addExperiencia()">Guardar</button>
-        <button type="button" class="btn btn-primary" (click)="updateExperiencia()">Actualizar</button>
+        <button *ngIf="!isUpdating" type="button" class="btn btn-primary" (click)="addExperiencia()">Guardar</button>
+        <button *ngIf="isUpdating" type="button" class="btn btn-primary" (click)="updateExperiencia()">Actualizar</button>
       </div>
     </div>
   </div>

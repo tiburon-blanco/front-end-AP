@@ -21,12 +21,14 @@ export class ExperienciaComponent implements OnInit {
 
   formulario: any;
 
+  isUpdating = false;
+
   constructor(public experienciaService: ExperienciaService) { }
 
   ngOnInit(): void {
     this.getExperiencias();
     this.formModal = new window.bootstrap.Modal(
-      document.getElementById('myModal')
+      document.getElementById('modal_experiencia')
     );
     this.formulario = new FormGroup( { 
       id: new FormControl(''),
@@ -57,6 +59,7 @@ export class ExperienciaComponent implements OnInit {
   }
   
   openModalExperiencia(): void {
+    this.isUpdating = false;
     this.resetFormulario();
     this.formModal.show();
   }
@@ -75,7 +78,7 @@ export class ExperienciaComponent implements OnInit {
   }
 
   openModalExperienciaEdit(experiencia: any): void {
-     console.log(experiencia);
+    this.isUpdating = true;
      this.formulario.controls['id'].setValue(experiencia!.id);
      this.formulario.controls['logo'].setValue(experiencia!.logo);
      this.formulario.controls['empresa'].setValue(experiencia!.empresa);

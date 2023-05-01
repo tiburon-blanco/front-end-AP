@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ExperienciaService } from './servicios/experiencia.service';
+import { EducacionService } from './servicios/educacion.service';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ExperienciaService } from './servicios/experiencia.service';
   ],
   providers: [
     ExperienciaService,
+    EducacionService,
 
   ],
   bootstrap: [AppComponent]
