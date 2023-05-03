@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ExperienciaService } from './servicios/experiencia.service';
 import { EducacionService } from './servicios/educacion.service';
+import { ProyectoService } from './servicios/proyecto.service';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { EducacionService } from './servicios/educacion.service';
   providers: [
     ExperienciaService,
     EducacionService,
+    ProyectoService
 
   ],
   bootstrap: [AppComponent]
