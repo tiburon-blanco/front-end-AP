@@ -41,14 +41,14 @@ export class ProyectoComponent implements OnInit {
     });
   }
   getProyectos() {
-    throw new Error('Method not implemented.');
-  }
-
-  getProyecto(): void {
-    this.proyectoService.getProyecto().subscribe(data => {
+    this.proyectoService.getProyectos().subscribe(data => {
       this.proyectos = data;
     });
   }
+
+  // getProyecto(): void {
+
+  // }
 
   resetFormulario() {
     this.formulario.reset();
@@ -84,7 +84,7 @@ export class ProyectoComponent implements OnInit {
     this.formulario.controls['nombre'].setValue(proyecto!.nombre);
     this.formulario.controls['descripcion'].setValue(proyecto!.descripcion);
     this.formulario.controls['link'].setValue(proyecto.link);
-    this.formulario.controls['fecha'].setValue(formatDate(proyecto.fecha, 'yyyy-MM-dd', 'en'));
+    this.formulario.controls['fecha'].setValue(proyecto.fecha);
     this.formModal.show();
   }
 
@@ -94,9 +94,10 @@ export class ProyectoComponent implements OnInit {
     this.proyecto.descripcion = this.formulario.controls['descripcion'].value
     this.proyecto.link = this.formulario.controls['link'].value
     this.proyecto.fecha = this.formulario.controls['fecha'].value
+
     this.proyectoService.updateProyecto(this.proyecto).subscribe(data => {
       this.formModal.hide();
-      this.getProyecto();
+      this.getProyectos();
     });
   }
 }
