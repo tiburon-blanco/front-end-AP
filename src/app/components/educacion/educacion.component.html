@@ -1,64 +1,54 @@
 <div class="row">
-    <h1>Estudios</h1>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
-        
-         <ul *ngFor="let educacion of educaciones">
-            <li>
-                <img src={{educacion.logo}} alt="logo" width="250px">
-                <h1>{{educacion.nombre}}</h1>
-		        <p>{{educacion.instituto}}</p>
-                <button (click)="openModalEducacionEdit(educacion)">Editar</button>
-                <button (click)="deleteEducacion(educacion.id!)">Eliminar</button>
-            </li>
-        </ul>
-        <button (click)="openModalEducacion()">Agregar</button>
-    </div>
+  <h1>Estudios</h1>
+  <div class="col-lg-1"></div>
+  <div class="col-lg-11">
+
+    <ul *ngFor="let educacion of educaciones">
+      <li>
+        <img src={{educacion.logo}} alt="logo" width="250px">
+        <h1>{{educacion.nombre}}</h1>
+        <p>{{educacion.instituto}}</p>
+        <button (click)="openModalEducacionEdit(educacion)">Editar</button>
+        <button (click)="deleteEducacion(educacion.id!)">Eliminar</button>
+      </li>
+    </ul>
+    <button (click)="openModalEducacion()">Agregar</button>
+  </div>
 
 </div>
 
 
 
 <!--form modal-->
-<div
-  class="modal fade"
-  id="modal_educacion"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="modal_educacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Nueva educación</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
         <form [formGroup]="formulario">
-             <input type="hidden" class="form-control" formControlName="id" name="id" id="id">
-             <div class="form-group">
-                <label for="nombre">Logo <label style="color:red">(*)</label></label>
-                <input type="text" class="form-control" formControlName="logo" value="" required>
-              </div>
-              <div class="form-group">
-                <label for="educacion">Instituto</label>
-                <input type="text" class="form-control" formControlName="instituto" value="" required>
-              </div>
-             
-              <div class="form-group">
-                <label for="nombre">Nombre de la Carrera</label>
-                <input type="text" class="form-control" formControlName="nombre" value="" required>
-              </div>
+          <input type="hidden" class="form-control" formControlName="id" name="id" id="id">
+          <div class="form-group">
+            <label for="nombre">Logo <label style="color:red">(*)</label></label>
+            <input type="text" class="form-control" formControlName="logo" value="" required>
+          </div>
+          <div class="form-group">
+            <label for="educacion">Instituto</label>
+            <input type="text" class="form-control" formControlName="instituto" value="" required>
+          </div>
 
-              <div class="form-group">
-                <label for="periodo">Año</label>
-                <input type="text" class="form-control" formControlName="periodo" value="" required>
-              </div>
+          <div class="form-group">
+            <label for="nombre">Nombre de la Carrera</label>
+            <input type="text" class="form-control" formControlName="nombre" value="" required>
+          </div>
+
+          <div class="form-group">
+            <label for="periodo">Año</label>
+            <input type="text" class="form-control" formControlName="periodo" value="" required>
+          </div>
         </form>
       </div>
       <div class="modal-footer">

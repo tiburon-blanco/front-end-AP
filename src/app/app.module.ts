@@ -11,7 +11,7 @@ import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { HysComponent } from './components/hys/hys.component';
+import { HabilidadComponent } from './components/habilidad/habilidad.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ExperienciaService } from './servicios/experiencia.service';
 import { EducacionService } from './servicios/educacion.service';
 import { ProyectoService } from './servicios/proyecto.service';
+import { HabilidadService } from './servicios/habilidad.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { ProyectoService } from './servicios/proyecto.service';
     BannerComponent,
     AcercaDeComponent,
     EducacionComponent,
-    HysComponent,
+    HabilidadComponent,
     ProyectoComponent,
     FooterComponent,
     HomeComponent,
@@ -48,7 +49,8 @@ import { ProyectoService } from './servicios/proyecto.service';
   providers: [
     ExperienciaService,
     EducacionService,
-    ProyectoService
+    ProyectoService,
+    HabilidadService
 
   ],
   bootstrap: [AppComponent]

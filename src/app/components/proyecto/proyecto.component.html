@@ -7,8 +7,8 @@
             <li>
                 <h3>{{proyecto.nombre}} </h3>
                 <h5>{{proyecto.descripcion}}</h5>
-                <h6>({{proyecto.fecha}})</h6>
-                <h6>({{proyecto.link}})</h6>
+                <h4>({{proyecto.fecha}})</h4>
+                <h5>({{proyecto.link}})</h5>
                 <button (click)="openModalProyectoEdit(proyecto)">Editar</button>
                 <button (click)="deleteProyecto(proyecto.id!)">Eliminar</button>
             </li>

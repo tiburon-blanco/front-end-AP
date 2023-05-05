@@ -1,3 +1,71 @@
+<div class="row">
+    <h1>Hard & Soft Skills</h1>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-11">
+
+        <ul *ngFor="let habilidad of habilidades">
+            <li>
+                <h3>{{habilidad.nombre}} </h3>
+                <h6>{{habilidad.grado}}</h6>
+                <button (click)="openModalHabilidadEdit(habilidad)">Editar</button>
+                <button (click)="deleteHabilidad(habilidad.id!)">Eliminar</button>
+            </li>
+        </ul>
+
+        <button (click)="openModalHabilidad()">Agregar</button>
+    </div>
+
+</div>
+
+
+<!--form modal-->
+<div class="modal fade" id="modal_habilidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva habilidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="formulario">
+                    <input type="hidden" class="form-control" formControlName="id" name="id" id="id">
+                    <div class="form-group">
+                        <label for="nombre">Nombre <label style="color:red">(*)</label></label>
+                        <input type="text" class="form-control" formControlName="nombre" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="grado">grado</label>
+                        <input type="number" class="form-control" formControlName="grado" value="" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                <button *ngIf="!isUpdating" type="button" class="btn btn-primary"
+                    (click)="addHabilidad()">Guardar</button>
+
+
+                <button *ngIf="isUpdating" type="button" class="btn btn-primary"
+                    (click)="updateHabilidad()">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
 <div class row="">
     <h1>Hard & Soft Skills </h1>
     <div class="d-flex flex-row">
@@ -48,9 +116,9 @@
         </div>
 
     </div>
-
-
-    <!-- 
+ 
+    
+    
 <circle-progress 
     [percent]="90" 
     [radius]="100" 
