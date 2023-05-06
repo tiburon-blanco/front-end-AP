@@ -1,22 +1,71 @@
 <div class="row">
     <h1>Experiencia Laboral</h1>
+   
     <div class="col-lg-1"></div>
-    <div class="col-lg-11">
+    
+     <div class="col-lg-11">
 
         <ul *ngFor="let experiencia of experiencias">
             <li>
                 <img src={{experiencia.logo}} alt="logo" width="250px">
                 <h1>{{experiencia.empresa}}</h1> - <h3>({{experiencia.desde}}-{{experiencia.hasta}})</h3>
-                <button (click)="openModalExperienciaEdit(experiencia)">Editar</button>
+
+
+                 <button (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
+
+                
+
                 <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
             </li>
             <p>{{experiencia.descripcion}}</p>
         </ul>
 
         <button (click)="openModalExperiencia()">Agregar</button>
-    </div>
+    </div> 
 
-</div>
+
+
+
+<!--     
+   <div class="col-lg-11">
+    
+      <ul *ngFor="let experiencia of experiencias">
+          <li>
+            
+              <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                      <img src={{experiencia.logo}} alt="logo" width="200px">
+                  </div>
+                    
+                    
+                  <div class="ml-2">
+                      
+                        <h4>{{experiencia.empresa}}</h4>
+                        <h6>({{experiencia.desde}}-{{experiencia.hasta}})</h6>
+                        <h3>{{experiencia.puesto}}</h3>
+                        <p>{{experiencia.descripcion}}</p>
+
+                      
+                  </div>
+
+                  
+                  <div class="d-flex justify-content-between align-items-start">
+                                  
+                    <button class="btn btn-primary btn-sm mx-2 mr-2 font-weight-bold" (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
+                    <button class="btn btn-danger btn-sm mx-2 mr-2 font-weight-bold" (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
+                    <button class="btn btn-success btn-sm mx-2 mr-2 font-weight-bold" (click)="openModalExperiencia()">Agregar</button>
+                  
+                  </div>
+              </div>
+              
+          </li>
+      </ul>
+  
+      
+  </div>
+  
+
+</div> -->
 
 
 <!--form modal-->
@@ -79,3 +128,24 @@
     </div>
   </div>
 </div>
+
+
+  <!-- <div class="col-lg-11">
+
+        <ul *ngFor="let experiencia of experiencias">
+            <li>
+                <img src={{experiencia.logo}} alt="logo" width="250px">
+                <h1>{{experiencia.empresa}}</h1> - <h3>({{experiencia.desde}}-{{experiencia.hasta}})</h3>
+
+
+                 <button (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
+
+                
+
+                <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
+            </li>
+            <p>{{experiencia.descripcion}}</p>
+        </ul>
+
+        <button (click)="openModalExperiencia()">Agregar</button>
+    </div> -->
