@@ -8,16 +8,21 @@
         <ul *ngFor="let experiencia of experiencias">
             <li>
                 <img src={{experiencia.logo}} alt="logo" width="250px">
-                <h1>{{experiencia.empresa}}</h1> - <h3>({{experiencia.desde}}-{{experiencia.hasta}})</h3>
+                <h4>{{experiencia.empresa}}</h4>
+                <h6>({{experiencia.desde}}-{{experiencia.hasta}})</h6>
+                <h3>{{experiencia.puesto}}</h3>
+                <p>{{experiencia.descripcion}}</p>
 
 
+                <div class="d-flex justify-content-between align-items-start">
                  <button (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
-
+                 <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
+                </div>
                 
 
-                <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
+                
             </li>
-            <p>{{experiencia.descripcion}}</p>
+            
         </ul>
 
         <button (click)="openModalExperiencia()">Agregar</button>
