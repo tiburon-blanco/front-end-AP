@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Proyecto } from 'src/app/model/proyecto.model';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
-import { formatDate } from '@angular/common'
+import { AuthService } from 'src/app/servicios/auth.service';
+import { formatDate } from '@angular/common';
 
 declare var window: any;
 
@@ -25,9 +26,15 @@ export class ProyectoComponent implements OnInit {
 
   isUpdating = false;
 
-  constructor(public proyectoService: ProyectoService) { }
+  isAuth: any;
+
+  loading: any;
+
+  constructor(public authService: AuthService, public proyectoService: ProyectoService) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.isAuth = this.authService.isLoggedIn();
     this.getProyectos();
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('modal_proyecto')
@@ -46,10 +53,6 @@ export class ProyectoComponent implements OnInit {
     });
   }
 
-  // getProyecto(): void {
-
-  // }
-
   resetFormulario() {
     this.formulario.reset();
   }
@@ -62,12 +65,14 @@ export class ProyectoComponent implements OnInit {
   }
 
   openModalProyecto(): void {
+    this.loading = false;
     this.isUpdating = false;
     this.resetFormulario();
     this.formModal.show();
   }
 
   addProyecto(): void {
+    this.loading = true;
     this.proyecto.nombre = this.formulario.controls['nombre'].value;
     this.proyecto.descripcion = this.formulario.controls['descripcion'].value
     this.proyecto.fecha = this.formulario.controls['fecha'].value
@@ -79,16 +84,18 @@ export class ProyectoComponent implements OnInit {
   }
 
   openModalProyectoEdit(proyecto: any): void {
+    this.loading = false;
     this.isUpdating = true;
     this.formulario.controls['id'].setValue(proyecto!.id);
     this.formulario.controls['nombre'].setValue(proyecto!.nombre);
     this.formulario.controls['descripcion'].setValue(proyecto!.descripcion);
     this.formulario.controls['link'].setValue(proyecto.link);
-    this.formulario.controls['fecha'].setValue(proyecto.fecha);
+    this.formulario.controls['hasta'].setValue(formatDate(proyecto.hasta,'yyyy-MM-dd','en'));
     this.formModal.show();
   }
 
   updateProyecto(): void {
+    this.loading = true;
     this.proyecto.id = this.formulario.controls['id'].value;
     this.proyecto.nombre = this.formulario.controls['nombre'].value;
     this.proyecto.descripcion = this.formulario.controls['descripcion'].value

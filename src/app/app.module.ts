@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,13 +14,15 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HabilidadComponent } from './components/habilidad/habilidad.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ExperienciaService } from './servicios/experiencia.service';
 import { EducacionService } from './servicios/educacion.service';
 import { ProyectoService } from './servicios/proyecto.service';
 import { HabilidadService } from './servicios/habilidad.service';
+import { AuthService } from './servicios/auth.service';
+import { JwtInterceptor } from './servicios/jwt.interceptor.service';
 
 
 @NgModule({
@@ -46,12 +48,9 @@ import { HabilidadService } from './servicios/habilidad.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
+  
   providers: [
-    ExperienciaService,
-    EducacionService,
-    ProyectoService,
-    HabilidadService
-
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

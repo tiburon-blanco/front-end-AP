@@ -1,21 +1,35 @@
-<div class="row">
-    <h1>Hard & Soft Skills</h1>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
+<section id="habilidad" class="skills section-bg">
+    <div class="container">
 
-        <ul *ngFor="let habilidad of habilidades">
-            <li>
-                <h3>{{habilidad.nombre}} </h3>
-                <h6>{{habilidad.grado}}</h6>
-                <button (click)="openModalHabilidadEdit(habilidad)">Editar</button>
-                <button (click)="deleteHabilidad(habilidad.id!)">Eliminar</button>
-            </li>
-        </ul>
+      <div class="section-title">
+        <div class="d-flex justify-content-between bd-highlight mb-3">
+            <h2>Habilidades</h2>
+            <div class="p-2 bd-highlight">
+              <button (click)="openModalHabilidad()" *ngIf="isAuth" class="btn btn-success">Agregar nueva habilidad</button>
+            </div>
+          </div>
+        <p>Listado de las habilidades en las que me destaco.</p>
+      </div>
 
-        <button (click)="openModalHabilidad()">Agregar</button>
+      <div class="row skills-content">
+
+        <div class="col-lg-6" data-aos="fade-up" *ngFor="let habilidad of habilidades">
+
+          <div class="progress">
+            <span class="skill">{{habilidad.nombre}} <i class="val">{{habilidad.grado}}%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" [ngStyle]="{'width.%':habilidad.grado}" aria-valuemin="" aria-valuemax="100"></div>
+            </div>
+         
+          </div>
+          <button class="btn btn-info" *ngIf="isAuth" (click)="openModalHabilidadEdit(habilidad)">Editar</button>
+          <button class="btn btn-danger ms-2" *ngIf="isAuth" (click)="deleteHabilidad(habilidad.id!)">Eliminar</button>
+        </div>
+
+      </div>
+
     </div>
-
-</div>
+  </section><!-- End Skills Section -->
 
 
 <!--form modal-->
@@ -38,8 +52,20 @@
                         <input type="text" class="form-control" formControlName="nombre" value="" required>
                     </div>
                     <div class="form-group">
-                        <label for="grado">grado</label>
-                        <input type="number" class="form-control" formControlName="grado" value="" required>
+                        <label for="grado">Grado</label>
+                        <select name="grado" id="grado-select" class="form-control form-select" formControlName="grado">
+                          <option value="0">0</option>
+                          <option value="10">10</option>
+                          <option value="20">20</option>
+                          <option value="30">30</option>
+                          <option value="40">40</option>
+                          <option value="50">50</option>
+                          <option value="60">60</option>
+                          <option value="70">70</option>
+                          <option value="80">80</option>
+                          <option value="90">90</option>
+                          <option value="100">100</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -47,81 +73,17 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-                <button *ngIf="!isUpdating" type="button" class="btn btn-primary"
-                    (click)="addHabilidad()">Guardar</button>
+                <button *ngIf="!isUpdating" type="button" class="btn btn-primary"(click)="addHabilidad()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Guardar
+                </button>
 
 
-                <button *ngIf="isUpdating" type="button" class="btn btn-primary"
-                    (click)="updateHabilidad()">Actualizar</button>
+                <button *ngIf="isUpdating" type="button" class="btn btn-primary"(click)="updateHabilidad()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Actualizar
+                </button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-<!-- 
-<div class row="">
-    <h1>Hard & Soft Skills </h1>
-    <div class="d-flex flex-row">
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="90" [radius]="100" [title]="'HTML'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="90" [radius]="100" [title]="'CSS'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="90" [radius]="100" [title]="'JAVA SCRIPT'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-    </div>
-    <div class="d-flex flex-row">
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="50" [radius]="100" [title]="'ANGULAR'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-
-
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="50" [radius]="100" [title]="'DJANGO'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-        <div class="text-center col-sm-4 col-md-4 col-lg-4">
-            <circle-progress [percent]="40" [radius]="100" [title]="'PYTHON'" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="600"></circle-progress>
-
-        </div>
-
-    </div>
- 
-    
-    
-<circle-progress 
-    [percent]="90" 
-    [radius]="100" 
-    [title]="'HTML'" [showImage]="true" [imageHeight]="70"
-        [imageWidth]="50" [title]="'HTML'" [outerStrokeWidth]="16" [innerStrokeWidth]="2" [outerStrokeColor]="'#78C000'"
-        [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="600"></circle-progress> -->

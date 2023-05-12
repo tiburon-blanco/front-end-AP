@@ -1,95 +1,39 @@
-<div class="row mt-3">
-  <div class="col-lg-12">
-    <div class="d-flex justify-content-between bd-highlight mb-3">
-      <h1>Experiencia Laboral</h1>
-      <div class="p-2 bd-highlight">
-        <button (click)="openModalExperiencia()" class="btn btn-success">Agregar</button>
+<section id="experiencia" class="resume">
+  <div class="container">
+    <div class="section-title">
+      <div class="d-flex justify-content-between bd-highlight mb-3">
+        <h2>Experiencia Laboral</h2>
+        <div class="p-2 bd-highlight">
+          <button (click)="openModalExperiencia()" *ngIf="isAuth" class="btn btn-success">Agregar nueva experiencia laboral</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-up">
+        <div *ngFor="let experiencia of experiencias" class="resume-item pb-0">
+          <div class="row">
+            <div class="col-md-2 ">
+              <img src={{experiencia.logo}} class="img-thumbnail" alt="logo"  >
+            </div>
+            <div class="col-md-8">
+              <h4>{{experiencia.empresa}}</h4>
+              <h5>{{experiencia.desde | date:'shortDate'}} - {{experiencia.hasta | date:'shortDate'}}</h5>
+              <ul><li><strong>Puesto:</strong> {{experiencia.puesto}}</li></ul>
+              <p><em>{{experiencia.descripcion}}</em></p>
+            </div>
+            <div class="col-md-2 text-right">
+              <button class="btn btn-info" *ngIf="isAuth" (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
+              <button class="btn btn-danger ms-1" *ngIf="isAuth" (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
- </div>
-
- 
- <div class="row">
-    <div class="col-lg-1"></div>
-    
-     <div class="col-lg-11">
-
-        <ul *ngFor="let experiencia of experiencias">
-            <li>
-                <img src={{experiencia.logo}} alt="logo" width="250px">
-                <h4>{{experiencia.empresa}}</h4>
-                <h6>({{experiencia.desde}}-{{experiencia.hasta}})</h6>
-                <h3>{{experiencia.puesto}}</h3>
-                <p>{{experiencia.descripcion}}</p>
-
-
-                <div class="d-flex justify-content-between align-items-start">
-                 <button (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
-                 <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
-                </div>
-                
-
-                
-            </li>
-            
-        </ul>
-
-    </div> 
-
-
-
-
-<!--     
-   <div class="col-lg-11">
-    
-      <ul *ngFor="let experiencia of experiencias">
-          <li>
-            
-              <div class="d-flex justify-content-between align-items-start">
-                  <div>
-                      <img src={{experiencia.logo}} alt="logo" width="200px">
-                  </div>
-                    
-                    
-                  <div class="ml-2">
-                      
-                        <h4>{{experiencia.empresa}}</h4>
-                        <h6>({{experiencia.desde}}-{{experiencia.hasta}})</h6>
-                        <h3>{{experiencia.puesto}}</h3>
-                        <p>{{experiencia.descripcion}}</p>
-
-                      
-                  </div>
-
-                  
-                  <div class="d-flex justify-content-between align-items-start">
-                                  
-                    <button class="btn btn-primary btn-sm mx-2 mr-2 font-weight-bold" (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
-                    <button class="btn btn-danger btn-sm mx-2 mr-2 font-weight-bold" (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
-                    <button class="btn btn-success btn-sm mx-2 mr-2 font-weight-bold" (click)="openModalExperiencia()">Agregar</button>
-                  
-                  </div>
-              </div>
-              
-          </li>
-      </ul>
-  
-      
-  </div>
-  
-
-</div> -->
-
+</section>
 
 <!--form modal-->
-<div
-  class="modal fade"
-  id="modal_experiencia"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="modal_experiencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -112,22 +56,18 @@
                 <label for="empresa">Empresa</label>
                 <input type="text" class="form-control" formControlName="empresa" value="" required>
               </div>
-             
               <div class="form-group">
                 <label for="puesto">Puesto</label>
                 <input type="text" class="form-control" formControlName="puesto" value="" required>
               </div>
-
               <div class="form-group">
                 <label for="desde">Desde</label>
                 <input type="date" class="form-control" formControlName="desde" value="" required>
               </div>
-
               <div class="form-group">
                 <label for="desde">Hasta</label>
                 <input type="date" class="form-control" formControlName="hasta" value="" required>
               </div>
-
               <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <textarea class="form-control" formControlName="descripcion" value="" required rows="3"></textarea>
@@ -136,30 +76,15 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button *ngIf="!isUpdating" type="button" class="btn btn-primary" (click)="addExperiencia()">Guardar</button>
-        <button *ngIf="isUpdating" type="button" class="btn btn-primary" (click)="updateExperiencia()">Actualizar</button>
+        <button *ngIf="!isUpdating" type="button" class="btn btn-primary" (click)="addExperiencia()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Guardar
+        </button>
+        <button *ngIf="isUpdating" type="button" class="btn btn-primary" (click)="updateExperiencia()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Actualizar
+        </button>
       </div>
     </div>
   </div>
 </div>
-
-
-  <!-- <div class="col-lg-11">
-
-        <ul *ngFor="let experiencia of experiencias">
-            <li>
-                <img src={{experiencia.logo}} alt="logo" width="250px">
-                <h1>{{experiencia.empresa}}</h1> - <h3>({{experiencia.desde}}-{{experiencia.hasta}})</h3>
-
-
-                 <button (click)="openModalExperienciaEdit(experiencia)">Editar</button> 
-
-                
-
-                <button (click)="deleteExperiencia(experiencia.id!)">Eliminar</button>
-            </li>
-            <p>{{experiencia.descripcion}}</p>
-        </ul>
-
-        <button (click)="openModalExperiencia()">Agregar</button>
-    </div> -->

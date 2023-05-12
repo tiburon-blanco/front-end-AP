@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Experiencia } from 'src/app/model/experiencia.model';
 import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import { formatDate } from '@angular/common' 
+import { AuthService } from 'src/app/servicios/auth.service';
 
 declare var window: any;
 
@@ -23,9 +24,15 @@ export class ExperienciaComponent implements OnInit {
 
   isUpdating = false;
 
-  constructor(public experienciaService: ExperienciaService) { }
+  isAuth: any;
+
+  loading: any;
+
+  constructor(public authService: AuthService, public experienciaService: ExperienciaService) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.isAuth = this.authService.isLoggedIn();
     this.getExperiencias();
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('modal_experiencia')
@@ -59,12 +66,14 @@ export class ExperienciaComponent implements OnInit {
   }
   
   openModalExperiencia(): void {
+    this.loading = false;
     this.isUpdating = false;
     this.resetFormulario();
     this.formModal.show();
   }
 
   addExperiencia(): void {
+    this.loading = true;
     this.experiencia.logo         = this.formulario.controls['logo'].value;
     this.experiencia.empresa      = this.formulario.controls['empresa'].value
     this.experiencia.puesto       = this.formulario.controls['puesto'].value
@@ -78,7 +87,8 @@ export class ExperienciaComponent implements OnInit {
   }
 
   openModalExperienciaEdit(experiencia: any): void {
-    this.isUpdating = true;
+     this.loading = false;
+     this.isUpdating = true;
      this.formulario.controls['id'].setValue(experiencia!.id);
      this.formulario.controls['logo'].setValue(experiencia!.logo);
      this.formulario.controls['empresa'].setValue(experiencia!.empresa);
@@ -90,6 +100,7 @@ export class ExperienciaComponent implements OnInit {
   }
 
   updateExperiencia(): void {
+    this.loading = true;
     this.experiencia.id = this.formulario.controls['id'].value;
     this.experiencia.logo = this.formulario.controls['logo'].value;
     this.experiencia.empresa = this.formulario.controls['empresa'].value

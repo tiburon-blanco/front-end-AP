@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Habilidad } from 'src/app/model/habilidad.model';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { HabilidadService } from 'src/app/servicios/habilidad.service';
 
 declare var window: any;
@@ -24,9 +25,15 @@ export class HabilidadComponent implements OnInit {
 
   isUpdating = false;
 
-  constructor(public habilidadService: HabilidadService) { }
+  isAuth: any;
+
+  loading: any;
+
+  constructor(public authService: AuthService, public habilidadService: HabilidadService) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.isAuth = this.authService.isLoggedIn();
     this.getHabilidades();
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('modal_habilidad')
@@ -57,12 +64,14 @@ export class HabilidadComponent implements OnInit {
   }
 
   openModalHabilidad(): void {
+    this.loading = false;
     this.isUpdating = false;
     this.resetFormulario();
     this.formModal.show();
   }
 
   addHabilidad(): void {
+    this.loading = true;
     this.habilidad.nombre = this.formulario.controls['nombre'].value;
     this.habilidad.grado = this.formulario.controls['grado'].value
     this.habilidadService.addHabilidad(this.habilidad).subscribe(data => {
@@ -72,6 +81,7 @@ export class HabilidadComponent implements OnInit {
   }
 
   openModalHabilidadEdit(habilidad: any): void {
+    this.loading = false;
     this.isUpdating = true;
     this.formulario.controls['id'].setValue(habilidad!.id);
     this.formulario.controls['nombre'].setValue(habilidad!.nombre);
@@ -80,6 +90,7 @@ export class HabilidadComponent implements OnInit {
   }
 
   updateHabilidad(): void {
+    this.loading = true;
     this.habilidad.id = this.formulario.controls['id'].value;
     this.habilidad.nombre = this.formulario.controls['nombre'].value;
     this.habilidad.grado = this.formulario.controls['grado'].value

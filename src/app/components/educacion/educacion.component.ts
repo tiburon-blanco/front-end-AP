@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Educacion } from 'src/app/model/educacion.model';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { EducacionService } from 'src/app/servicios/educacion.service';
 
 declare var window: any;
@@ -23,9 +24,15 @@ export class EducacionComponent {
 
   isUpdating = false;
 
-  constructor(public educacionService: EducacionService) { }
+  isAuth: any;
+
+  loading: any;
+
+  constructor(public authService: AuthService, public educacionService: EducacionService) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.isAuth = this.authService.isLoggedIn();
     this.getEducaciones();
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('modal_educacion')
@@ -57,12 +64,14 @@ export class EducacionComponent {
   }
   
   openModalEducacion(): void {
+    this.loading = false;
     this.isUpdating = false;
     this.resetFormulario();
     this.formModal.show();
   }
 
   addEducacion(): void {
+    this.loading = true;
     this.educacion.logo        = this.formulario.controls['logo'].value;
     this.educacion.instituto   = this.formulario.controls['instituto'].value
     this.educacion.nombre      = this.formulario.controls['nombre'].value
@@ -74,7 +83,8 @@ export class EducacionComponent {
   }
 
   openModalEducacionEdit(educacion: any): void {
-    this.isUpdating = true;
+     this.loading = false;
+     this.isUpdating = true;
      this.formulario.controls['id'].setValue(educacion!.id);
      this.formulario.controls['logo'].setValue(educacion!.logo);
      this.formulario.controls['instituto'].setValue(educacion!.nombre);
@@ -84,6 +94,7 @@ export class EducacionComponent {
   }
 
   updateEducacion(): void {
+    this.loading = true;
     this.educacion.id = this.formulario.controls['id'].value;
     this.educacion.logo = this.formulario.controls['logo'].value;
     this.educacion.instituto = this.formulario.controls['instituto'].value

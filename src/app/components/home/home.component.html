@@ -1,33 +1,98 @@
-<main>
-  <div class="container py-4">
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ======= Header ======= -->
+<header id="header">
+  <div class="d-flex flex-column">
 
     <app-header></app-header>
-
-    <app-acerca-de></app-acerca-de>
-
-    <app-experiencia></app-experiencia>
-
-
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h2>Change the background</h2>
-          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-          <h2>Add borders</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-    </div>
-
-    <footer class="pt-3 mt-4 text-body-secondary border-top">
-      © 2023
-    </footer>
+   
+    <nav id="navbar" class="nav-menu navbar">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Sobre mi</span></a></li>
+        <li><a href="#habilidad" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Habilidades</span></a></li>
+        <li><a href="#experiencia" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Experiencia Laboral</span></a></li>
+        <li><a href="#educacion" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Educación</span></a></li>
+        <li><a href="#proyecto" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Proyectos</span></a></li>
+        <li *ngIf="!isAuth"><a href="/login"  class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Login</span></a></li>
+        <li *ngIf="isAuth"><a href="#" (click)="logout()" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Salir</span></a></li>
+      </ul>
+    </nav><!-- .nav-menu -->
   </div>
-</main>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="hero-container" data-aos="fade-in">
+    <h1>Martín Antolini</h1>
+    <p>Desarrollador <span class="typed">FullStack</span></p>
+  </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <app-acerca-de></app-acerca-de>
+
+  <app-habilidad></app-habilidad>
+
+  <app-experiencia></app-experiencia>
+
+  <app-educacion></app-educacion>
+
+  <app-proyecto></app-proyecto>
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contacto</h2>
+        <p> </p>
+      </div>
+
+      <div class="row" data-aos="fade-in">
+
+        <div class="col-lg-12 d-flex align-items-stretch">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Calle 10 N 123, La Plata, Buenos Aires, Argentina</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>antolini.martin@gmail.com</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+54 9 2215930451</p>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13085.400496902139!2d-57.9512654046753!3d-34.92275502348039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1683699733523!5m2!1ses-419!2sar" width="600" style="border:0; width: 100%; height: 290px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <div class="copyright">
+      <img src="../../../assets/logoAp.jpg" width="220px">
+    </div>
+    <div class="credits">
+      Desarrollado por Martin Antilini
+    </div>
+  </div>
+</footer>
 

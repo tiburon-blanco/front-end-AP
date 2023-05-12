@@ -1,24 +1,33 @@
-<div class="row">
-    <h1>Proyectos Realizados</h1>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
-
-        <ul *ngFor="let proyecto of proyectos">
-            <li>
-                <h3>{{proyecto.nombre}} </h3>
-                <h5>{{proyecto.descripcion}}</h5>
-                <h4>({{proyecto.fecha}})</h4>
-                <h5>({{proyecto.link}})</h5>
-                <button (click)="openModalProyectoEdit(proyecto)">Editar</button>
-                <button (click)="deleteProyecto(proyecto.id!)">Eliminar</button>
-            </li>
-            <p>{{proyecto.descripcion}}</p>
-        </ul>
-
-        <button (click)="openModalProyecto()">Agregar</button>
+<section id="proyecto" class="resume">
+    <div class="container">
+      <div class="section-title">
+        <div class="d-flex justify-content-between bd-highlight mb-3">
+          <h2>Proyectos</h2>
+          <div class="p-2 bd-highlight">
+            <button (click)="openModalProyecto()" *ngIf="isAuth" class="btn btn-success">Agregar nuevo proyecto</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12" data-aos="fade-up">
+          <div *ngFor="let proyecto of proyectos" class="resume-item pb-0">
+            <div class="row">
+              <div class="col-md-10">
+                <h4>{{proyecto.nombre}}</h4>
+                <h5>{{proyecto.fecha | date:'shortDate'}}</h5>
+                <ul><li><strong>Link:</strong> {{proyecto.link}}</li></ul>
+                <p><em>{{proyecto.descripcion}}</em></p>
+              </div>
+              <div class="col-md-2 text-right">
+                <button class="btn btn-info" *ngIf="isAuth" (click)="openModalProyectoEdit(proyecto)">Editar</button> 
+                <button class="btn btn-danger ms-1" *ngIf="isAuth" (click)="deleteProyecto(proyecto.id!)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-</div>
+  </section>
 
 
 
@@ -48,7 +57,7 @@
 
                     <div class="form-group">
                         <label for="fecha">Fecha</label>
-                        <input type="text" class="form-control" formControlName="fecha" value="" required>
+                        <input type="date" class="form-control" formControlName="fecha" value="" required>
                     </div>
 
                     <div class="form-group">
@@ -59,10 +68,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button *ngIf="!isUpdating" type="button" class="btn btn-primary"
-                    (click)="addProyecto()">Guardar</button>
-                <button *ngIf="isUpdating" type="button" class="btn btn-primary"
-                    (click)="updateProyecto()">Actualizar</button>
+                <button *ngIf="!isUpdating" type="button" class="btn btn-primary" (click)="addProyecto()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Guardar
+                </button>
+                <button *ngIf="isUpdating" type="button" class="btn btn-primary" (click)="updateProyecto()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Actualizar
+                </button>
             </div>
         </div>
     </div>

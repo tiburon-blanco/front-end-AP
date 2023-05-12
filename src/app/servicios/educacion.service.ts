@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Educacion } from '../model/educacion.model';
@@ -10,9 +10,11 @@ import { Educacion } from '../model/educacion.model';
 
 export class EducacionService {
 
+
     private apiUrl = 'https://nameless-leaf-2280.fly.dev';
 
     constructor(private http: HttpClient) { }
+    
 
     getEducaciones(): Observable<Educacion[]> {
         return this.http.get<Educacion[]>(this.apiUrl + '/educacion');
