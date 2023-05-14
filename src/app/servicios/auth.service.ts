@@ -7,7 +7,7 @@ import { catchError, Observable, pipe, tap, throwError } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'https://nameless-leaf-2280.fly.dev';
+  private apiUrl = 'http://52.14.161.48:8080/';
   private token!: string;
 
   constructor(private http: HttpClient) { }

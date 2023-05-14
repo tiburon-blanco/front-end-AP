@@ -10,8 +10,7 @@ import { Educacion } from '../model/educacion.model';
 
 export class EducacionService {
 
-
-    private apiUrl = 'https://nameless-leaf-2280.fly.dev';
+    private apiUrl = 'http://52.14.161.48:8080/';
 
     constructor(private http: HttpClient) { }
     

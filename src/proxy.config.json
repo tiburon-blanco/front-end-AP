@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://nameless-leaf-2280.fly.dev",
+        "target": "https://portfolio-martin-antolini.web.app",
         "secure": true,
         "logLevel": "debug",
         "changeOrigin": true

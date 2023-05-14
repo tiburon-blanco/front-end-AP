@@ -9,7 +9,7 @@ import { Experiencia } from '../model/experiencia.model';
 
 export class ExperienciaService {
 
-    private apiUrl = 'https://nameless-leaf-2280.fly.dev';
+    private apiUrl = 'https://portfolio-martin.onrender.com';
 
     constructor(private http: HttpClient) { }
 
