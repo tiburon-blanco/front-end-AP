@@ -9,7 +9,7 @@ import { Experiencia } from '../model/experiencia.model';
 
 export class ExperienciaService {
 
-    private apiUrl = 'https://portfolio-martin.onrender.com';
+    private apiUrl = 'https://portfolio-martin-antolini.onrender.com';
 
     constructor(private http: HttpClient) { }
 

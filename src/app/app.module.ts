@@ -17,11 +17,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ExperienciaService } from './servicios/experiencia.service';
-import { EducacionService } from './servicios/educacion.service';
-import { ProyectoService } from './servicios/proyecto.service';
-import { HabilidadService } from './servicios/habilidad.service';
-import { AuthService } from './servicios/auth.service';
 import { JwtInterceptor } from './servicios/jwt.interceptor.service';
 
 

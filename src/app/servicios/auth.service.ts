@@ -7,7 +7,7 @@ import { catchError, Observable, pipe, tap, throwError } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://52.14.161.48:8080/';
+  private apiUrl = 'https://portfolio-martin-antolini.onrender.com';
   private token!: string;
 
   constructor(private http: HttpClient) { }

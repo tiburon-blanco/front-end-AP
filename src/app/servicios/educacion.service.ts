@@ -10,7 +10,7 @@ import { Educacion } from '../model/educacion.model';
 
 export class EducacionService {
 
-    private apiUrl = 'http://52.14.161.48:8080/';
+    private apiUrl = 'https://portfolio-martin-antolini.onrender.com';
 
     constructor(private http: HttpClient) { }
     
