@@ -1,16 +1,17 @@
 <!-- ======= Mobile nav toggle button ======= -->
-<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<i class="bi bi-list d-xl-none"></i>
+
+<a href="/login" *ngIf="!isAuth"  class="blogin btn btn-success"><i class="bx bx-envelope"></i> <span>Login</span></a>
+<a href="#" *ngIf="isAuth" (click)="logout()" class="blogin btn btn-warning"><i class="bx bx-envelope"></i> <span>Salir</span></a>
 
 <!-- ======= Header ======= -->
 <header id="header">
   <div class="d-flex flex-column">
 
-    <app-header></app-header>
+    <app-header></app-header>      
    
     <nav id="navbar" class="nav-menu navbar">
       <ul>
-        <li *ngIf="!isAuth"><a href="/login"  class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Login</span></a></li>
-        <li *ngIf="isAuth"><a href="#" (click)="logout()" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Salir</span></a></li>
         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Sobre mi</span></a></li>
         <li><a href="#habilidad" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Habilidades</span></a></li>
