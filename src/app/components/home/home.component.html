@@ -9,14 +9,15 @@
    
     <nav id="navbar" class="nav-menu navbar">
       <ul>
+        <li *ngIf="!isAuth"><a href="/login"  class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Login</span></a></li>
+        <li *ngIf="isAuth"><a href="#" (click)="logout()" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Salir</span></a></li>
         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Sobre mi</span></a></li>
         <li><a href="#habilidad" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Habilidades</span></a></li>
         <li><a href="#experiencia" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Experiencia Laboral</span></a></li>
         <li><a href="#educacion" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Educación</span></a></li>
         <li><a href="#proyecto" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Proyectos</span></a></li>
-        <li *ngIf="!isAuth"><a href="/login"  class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Login</span></a></li>
-        <li *ngIf="isAuth"><a href="#" (click)="logout()" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Salir</span></a></li>
+        
       </ul>
     </nav><!-- .nav-menu -->
   </div>
@@ -57,8 +58,8 @@
           <div class="info">
             <div class="address">
               <i class="bi bi-geo-alt"></i>
-              <h4>Location:</h4>
-              <p>Calle 10 N 123, La Plata, Buenos Aires, Argentina</p>
+              <h4>Oficina:</h4>
+              <p>Calle 9 N 634, La Plata, Buenos Aires, Argentina</p>
             </div>
 
             <div class="email">
